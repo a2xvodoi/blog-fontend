@@ -1,6 +1,7 @@
 import { nextTick } from "vue";
 import { createRouter, createWebHistory } from "vue-router";
 import routes from "./routes";
+import i18n from '@/i18n';
 // import common from "@/utils/common";
 
 // configure router
@@ -32,7 +33,7 @@ const DEFAULT_TITLE = "Admin Dashboard";
 
 router.afterEach((to) => {
   nextTick(() => {
-    document.title = to.meta.title || DEFAULT_TITLE;
+    document.title = i18n.global.t(to.meta.title || DEFAULT_TITLE);
   });
 });
 

@@ -1,14 +1,20 @@
 import { createApp } from "vue";
+import VueSweetalert2 from "vue-sweetalert2";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import i18n from "./i18n";
+import plugins from "./plugins";
 
 // import css assets
 import "bootstrap/dist/css/bootstrap.css";
-
-import i18n from './i18n'
+import "sweetalert2/dist/sweetalert2.min.css";
+import "vue-multiselect/dist/vue-multiselect.css";
 
 const app = createApp(App).use(i18n);
 app.use(router);
 app.use(store);
+app.use(plugins);
+app.use(VueSweetalert2);
+
 app.mount("#app");

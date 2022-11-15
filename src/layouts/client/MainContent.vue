@@ -9,7 +9,17 @@
   </div>
 </template>
 <script>
-export default {};
+import { useStore } from 'vuex';
+
+export default {
+  setup() {
+    const store = useStore();
+    const getTags = () => {
+      store.dispatch("tag/getTags");
+    };
+    getTags();
+  }
+};
 </script>
 <style>
 .fade-enter-active,

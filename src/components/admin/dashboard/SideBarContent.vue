@@ -40,15 +40,19 @@
           <li class="nav-item">
             <router-link :to="{ name: 'dashboard' }" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>Dashboard</p>
+              <p>{{ $t("dashboard") }}</p>
             </router-link>
           </li>
           <li class="nav-item">
             <router-link :to="{ name: 'tag-manager' }" class="nav-link">
               <i class="nav-icon fa fa-tags"></i>
-              <p>
-                Tags
-              </p>
+              <p>{{ $t("tag management") }}</p>
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link :to="{ name: 'blog-manager' }" class="nav-link">
+              <i class="nav-icon fa fa-blog"></i>
+              <p>{{ $t("blog management") }}</p>
             </router-link>
           </li>
         </ul>

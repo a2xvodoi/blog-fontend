@@ -12,6 +12,9 @@ const mutations = {
   SET_ITEM(state, payload) {
     state.item = payload;
   },
+  SET_LATEST(state, payload) {
+    state.latest = payload;
+  },
 };
 
 export default mutations;

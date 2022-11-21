@@ -11,6 +11,8 @@
   "delete": "delete",
   "confirm": "confirm",
   "cancel": "cancel",
+  "more": "learn more",
+  "comments": "Comments",
   "not found data": "Not found data!",
   "create-success": "Successful new creation!",
   "edit-success": "Update successful!",

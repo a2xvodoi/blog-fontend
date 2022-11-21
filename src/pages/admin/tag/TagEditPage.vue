@@ -3,6 +3,7 @@
     <tag-form
       v-model:title="title"
       v-model:describe="describe"
+      v-model:image="image"
       v-model:parent-id="parentId"
       :error="error"
     />
@@ -21,6 +22,7 @@ export default {
   setup() {
     const title = ref("");
     const describe = ref("");
+    const image = ref("");
     const parentId = ref(0);
     const error = ref("");
 
@@ -35,10 +37,11 @@ export default {
     watch(tag, () => {
       title.value = tag.value.title;
       describe.value = tag.value.describe;
+      image.value = tag.value.image;
       parentId.value = tag.value.parent_id;
     })
 
-    watch([title, describe, parentId], () => {
+    watch([title, describe, image, parentId], () => {
       error.value = "";
     });
 
@@ -49,6 +52,7 @@ export default {
             id: id.value,
             title: title.value,
             describe: describe.value,
+            image: image.value,
             parent_id: parentId.value,
           });
           toastSuccess({ title: i18n.global.t("edit-success") });
@@ -60,7 +64,7 @@ export default {
       }
     };
 
-    return { title, describe, parentId, error, submitForm };
+    return { title, describe, image, parentId, error, submitForm };
   },
 };
 </script>

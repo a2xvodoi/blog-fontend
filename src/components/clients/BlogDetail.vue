@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!isPending">
+  <div v-if="!isPending && dataDetail.blog">
     <title-content
       :category="dataDetail.blog.summary"
       :title="dataDetail.blog.title"
@@ -13,7 +13,7 @@
               <div class="col-lg-12 mb-5">
                 <div class="single-blog-item">
                   <img
-                    src=""
+                    :src="$imageBase(dataDetail.blog.image)"
                     alt=""
                     class="img-fluid rounded"
                   />
@@ -21,13 +21,24 @@
                   <div class="blog-item-content bg-white p-5">
                     <div class="blog-item-meta bg-gray py-1 px-2">
                       <span class="text-muted text-capitalize mr-3"
-                        ><i class="ti-pencil-alt mr-2"></i>Creativity</span
-                      >
+                        ><i class="ti-pencil-alt mr-2"></i>
+                        <router-link
+                          v-for="tag in dataDetail.tags"
+                          :key="tag.id"
+                          :to="{
+                            name: 'blog-by-tag',
+                            params: { slug: tag.slug },
+                          }"
+                          >{{ tag.title }} &nbsp;</router-link
+                        >
+                      </span>
                       <span class="text-muted text-capitalize mr-3"
-                        ><i class="ti-comment mr-2"></i>5 Comments</span
+                        ><i class="ti-comment mr-2"></i>5
+                        {{ $t("comments") }}</span
                       >
                       <span class="text-black text-capitalize mr-3"
-                        ><i class="ti-time mr-1"></i> 28th January</span
+                        ><i class="ti-time mr-1"></i
+                        >{{ formatDate(dataDetail.blog.published_at) }}</span
                       >
                     </div>
 
@@ -36,94 +47,12 @@
                     </h2>
                     <div class="content" v-html="dataDetail.blog.content"></div>
 
-                    <div class="tag-option mt-5 clearfix">
-                      <ul class="float-left list-inline">
-                        <li class="text-capitalize">{{ $t("tags") }}:</li>
-                        <li
-                          class="list-inline-item"
-                          v-for="tag in dataDetail.tags"
-                          :key="tag.id"
-                        >
-                          <router-link
-                            :to="{
-                              name: 'blog-by-tag',
-                              params: { slug: tag.slug },
-                            }"
-                            >{{ tag.title }}</router-link
-                          >
-                        </li>
-                      </ul>
-
-                      <ul class="float-right list-inline">
-                        <li class="list-inline-item">Share:</li>
-                        <li class="list-inline-item">
-                          <a href="#" target="_blank"
-                            ><i class="fab fa-facebook-f" aria-hidden="true"></i
-                          ></a>
-                        </li>
-                        <li class="list-inline-item">
-                          <a href="#" target="_blank"
-                            ><i class="fab fa-twitter" aria-hidden="true"></i
-                          ></a>
-                        </li>
-                        <li class="list-inline-item">
-                          <a href="#" target="_blank"
-                            ><i
-                              class="fab fa-pinterest-p"
-                              aria-hidden="true"
-                            ></i
-                          ></a>
-                        </li>
-                        <li class="list-inline-item">
-                          <a href="#" target="_blank"
-                            ><i
-                              class="fab fa-google-plus"
-                              aria-hidden="true"
-                            ></i
-                          ></a>
-                        </li>
-                      </ul>
-                    </div>
+                    <blog-option
+                      :tags="dataDetail.tags"
+                      :title="dataDetail.blog.title"
+                      :summary="dataDetail.blog.summary"
+                    />
                   </div>
-                </div>
-              </div>
-
-              <div class="col-lg-12 mb-5">
-                <div
-                  class="
-                    posts-nav
-                    bg-white
-                    p-5
-                    d-lg-flex d-md-flex
-                    justify-content-between
-                  "
-                >
-                  <a class="post-prev align-items-center" href="#">
-                    <div class="posts-prev-item mb-4 mb-lg-0">
-                      <span class="nav-posts-desc text-color"
-                        >- Previous Post</span
-                      >
-                      <h6 class="nav-posts-title mt-1">
-                        Donec consectetuer ligula <br />vulputate sem tristique.
-                      </h6>
-                    </div>
-                  </a>
-                  <div class="border"></div>
-                  <a class="posts-next" href="#">
-                    <div class="posts-next-item pt-4 pt-lg-0">
-                      <span
-                        class="
-                          nav-posts-desc
-                          text-lg-right text-md-right text-color
-                          d-block
-                        "
-                        >- Next Post</span
-                      >
-                      <h6 class="nav-posts-title mt-1">
-                        Ut aliquam sollicitudin leo.
-                      </h6>
-                    </div>
-                  </a>
                 </div>
               </div>
 
@@ -260,24 +189,29 @@
       </div>
     </section>
   </div>
-  <loading-icon v-show="isPending"/>
+  <loading-icon v-show="isPending" />
 </template>
 <script>
 import { computed } from "vue";
 import { useStore } from "vuex";
 import TitleContent from "@/components/clients/TitleContent.vue";
 import SideBar from "@/components/clients/SideBar.vue";
+import BlogOption from "@/components/clients/BlogOption.vue";
+import { formatDate } from "@/utils/helper";
 
 export default {
-  components: { TitleContent, SideBar },
+  components: { TitleContent, SideBar, BlogOption },
   setup() {
     const store = useStore();
     const isPending = computed(() => store.state.blog.isPending);
     const dataDetail = computed(() => store.state.blog.item);
 
-    return { isPending, dataDetail };
+    return { isPending, dataDetail, formatDate };
   },
 };
 </script>
 <style>
+.content img {
+  max-width: 100%;
+}
 </style>

@@ -4,7 +4,7 @@ import BlogAdmin from "@/api/admin/Blog";
 const actions = {
   getBlogs({ commit }, params) {
     commit("SET_IS_PENDING", true);
-    return BlogAdmin.list(params)
+    return Blog.list(params)
       .then((response) => {
         commit("SET_DATA", response.data);
       })
@@ -47,6 +47,19 @@ const actions = {
     return Blog.show(slug)
       .then((response) => {
         commit("SET_ITEM", response.data);
+      })
+      .catch(() => {
+        throw new Error("Could not get blog!");
+      })
+      .finally(() => {
+        commit("SET_IS_PENDING", false);
+      });
+  },
+  latest({ commit }) {
+    commit("SET_IS_PENDING", true);
+    return Blog.latest()
+      .then((response) => {
+        commit("SET_LATEST", response.data);
       })
       .catch(() => {
         throw new Error("Could not get blog!");

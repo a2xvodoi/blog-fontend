@@ -1,15 +1,14 @@
 import axios from "axios";
 import Qs from "qs";
+import { authHeader } from "@/utils/helper";
 
 const BASE_URL = process.env.VUE_APP_BASE_API || "http://localhost:3000/api";
 
 const axiosClient = axios.create({
   baseURL: BASE_URL,
-  // headers: {
-  //   "content-type": "application/json",
-  // },
+  headers: authHeader(),
   paramsSerializer: {
-    serialize: (params) => Qs.stringify(params, {arrayFormat: 'brackets'})
+    serialize: (params) => Qs.stringify(params, { arrayFormat: "brackets" }),
   },
 });
 

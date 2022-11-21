@@ -22,17 +22,24 @@
       ></textarea>
     </div>
     <div class="form-group">
-      <label class="text-capitalize" for="image">{{
-        $t("image")
-      }}</label>
+      <label class="text-capitalize" for="image">{{ $t("image") }}</label>
       <div class="input-group">
         <div class="custom-file">
-          <input type="file" class="custom-file-input" id="image" @change="filesChange($event.target.name, $event.target.files)"/>
-          <label class="custom-file-label" for="image"
-            >Choose file</label
-          >
+          <input
+            type="file"
+            class="custom-file-input"
+            id="image"
+            @change="filesChange($event.target.files)"
+          />
+          <label class="custom-file-label" for="image">Choose file</label>
         </div>
       </div>
+      <img
+        class="w-25 img-thumbnail mt-2"
+        alt="image"
+        v-if="image"
+        :src="isBase64(image) ? image : $imageBase(image)"
+      />
     </div>
     <div class="form-group">
       <label class="text-capitalize" for="parent_id">{{
@@ -78,15 +85,22 @@
 import { defineProps, defineEmits, computed } from "vue";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
+import { convertBase64, isBase64 } from "@/utils/helper";
 
 defineProps({
   title: String,
   describe: String,
+  image: String,
   parentId: Number,
   error: String,
 });
 
-defineEmits(["update:title", "update:describe", "update:parentId"]);
+const emits = defineEmits([
+  "update:title",
+  "update:describe",
+  "update:parentId",
+  "update:image",
+]);
 
 const route = useRoute();
 const store = useStore();
@@ -101,9 +115,16 @@ const getButtonSubmit = () => {
   return route.name === "tag-create" ? "create" : "update";
 };
 
-const filesChange = (name, files) => {
-console.log(name, files);
-}
+const filesChange = async (files) => {
+  try {
+    if (files[0]) {
+      const base64 = await convertBase64(files[0]);
+      emits("update:image", base64);
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
 </script>
 <style>
 </style>

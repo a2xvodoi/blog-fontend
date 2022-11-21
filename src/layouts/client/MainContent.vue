@@ -9,7 +9,7 @@
   </div>
 </template>
 <script>
-import { useStore } from 'vuex';
+import { useStore } from "vuex";
 
 export default {
   setup() {
@@ -17,8 +17,13 @@ export default {
     const getTags = () => {
       store.dispatch("tag/getTags");
     };
+
+    const getLatest = () => {
+      store.dispatch("blog/latest");
+    };
     getTags();
-  }
+    getLatest();
+  },
 };
 </script>
 <style>

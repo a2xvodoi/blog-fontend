@@ -1,16 +1,23 @@
+import { authHeader } from "@/utils/helper";
 import BaseApi from "../Base";
 
 export default {
-  show(id) {
-    return BaseApi.get(`/admin/tags/${id}`);
+  show(id, params) {
+    return BaseApi.get(
+      `/admin/tags/${id}`,
+      { params },
+      { headers: authHeader() }
+    );
   },
   store(params) {
-    return BaseApi.post("/admin/tags", params);
+    return BaseApi.post("/admin/tags", params, { headers: authHeader() });
   },
   update(id, params) {
-    return BaseApi.put(`/admin/tags/${id}`, params);
+    return BaseApi.put(`/admin/tags/${id}`, params, { headers: authHeader() });
   },
   destroy(id, params) {
-    return BaseApi.delete(`/admin/tags/${id}`, params);
+    return BaseApi.delete(`/admin/tags/${id}`, params, {
+      headers: authHeader(),
+    });
   },
 };

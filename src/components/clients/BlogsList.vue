@@ -13,12 +13,13 @@
                 :title="blog.title"
                 :summary="blog.summary"
                 :slug="blog.slug"
+                :image="blog.image"
               />
             </div>
           </div>
           <side-bar />
         </div>
-        <div class="row mt-5">
+        <!-- <div class="row mt-5">
           <div class="col-lg-8">
             <nav class="navigation pagination py-2 d-inline-block">
               <div class="nav-links">
@@ -29,10 +30,10 @@
               </div>
             </nav>
           </div>
-        </div>
+        </div> -->
       </div>
     </section>
-    <loading-icon v-show="isPending"/>
+    <loading-icon v-show="isPending" />
   </div>
 </template>
 <script>

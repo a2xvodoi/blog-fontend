@@ -13,7 +13,6 @@ export default {
   components: { NavbarContent, SideBarContent, MainContent, FooterContent },
 };
 </script>
-<style>
-@import url("@/assets/plugins/adminlte/fontawesome-free/css/all.min.css");
+<style scoped>
 @import url("@/assets/plugins/adminlte/adminlte.min.css");
 </style>

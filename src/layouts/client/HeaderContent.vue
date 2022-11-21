@@ -36,8 +36,9 @@
     </div>
     <nav class="navbar navbar-expand-lg py-4" id="navbar">
       <div class="container">
-        <a class="navbar-brand" href="index.html"> Mega<span>kit.</span> </a>
-
+        <router-link class="navbar-brand" to="/">
+          Mega<span>kit.</span>
+        </router-link>
         <button
           class="navbar-toggler collapsed"
           type="button"
@@ -57,7 +58,11 @@
               v-for="tag in getOnlyTagParent()"
               :key="tag.id"
             >
-            <router-link class="nav-link" :to="{name: 'blog-by-tag', params: {slug: tag.slug}}">{{ tag.title }}</router-link>
+              <router-link
+                class="nav-link"
+                :to="{ name: 'blog-by-tag', params: { slug: tag.slug } }"
+                >{{ tag.title }}</router-link
+              >
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">About</a>
@@ -67,6 +72,18 @@
             </li>
           </ul>
 
+          <div
+            class="
+              my-2 my-md-0
+              ml-lg-4
+              text-center
+              btn btn-solid-border btn-round-full
+            "
+            v-if="user"
+          >
+            {{ user.user_name }}
+          </div>
+
           <router-link
             class="
               my-2 my-md-0
@@ -74,7 +91,8 @@
               text-center
               btn btn-solid-border btn-round-full
             "
-            :to="{ path: '#' }"
+            v-else
+            :to="{ name: 'login' }"
             >Login</router-link
           >
         </div>
@@ -84,6 +102,7 @@
   <!-- Header Close -->
 </template>
 <script>
+import utilsCommon from "@/utils/common";
 import { computed } from "vue";
 import { useStore } from "vuex";
 
@@ -92,13 +111,17 @@ export default {
     const store = useStore();
     const isPending = computed(() => store.state.tag.isPending);
     const tags = computed(() => store.state.tag.data);
+    const user = computed(() => utilsCommon.getStorageDataByKey("user"));
 
     const getOnlyTagParent = () => {
       return tags.value.filter((tag) => tag.parent_id === 0).slice(0, 4);
     };
-    return { isPending, tags, getOnlyTagParent };
+    return { isPending, tags, getOnlyTagParent, user };
   },
 };
 </script>
 <style>
+#navbar .nav-link.active {
+  color: #f75757;
+}
 </style>

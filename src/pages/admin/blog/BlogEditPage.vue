@@ -6,6 +6,7 @@
       v-model:published="published"
       v-model:summary="summary"
       v-model:content="content"
+      v-model:image="image"
       v-model:selected="selected"
       :error="error"
     />
@@ -26,6 +27,7 @@ export default {
     const published = ref(false);
     const summary = ref("");
     const content = ref("");
+    const image = ref("");
     const selected = ref([]);
     const error = ref("");
 
@@ -43,10 +45,11 @@ export default {
       published.value = !!blog.value.published;
       summary.value = blog.value.summary;
       content.value = blog.value.content;
+      image.value = blog.value.image;
       selected.value = blog.value.tags;
     });
 
-    watch([title, published, summary, content, selected], () => {
+    watch([title, published, summary, content, selected, image], () => {
       error.value = "";
     });
 
@@ -59,6 +62,7 @@ export default {
             published: published.value,
             summary: summary.value,
             content: content.value,
+            image: image.value,
             tags: selected.value.length
               ? selected.value.map((item) => item.id).join(", ")
               : "",
@@ -71,7 +75,7 @@ export default {
       }
     };
 
-    return { title, published, summary, content, selected, error, submitForm };
+    return { title, published, summary, content, image, selected, error, submitForm };
   },
 };
 </script>

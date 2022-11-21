@@ -1,6 +1,7 @@
 const state = {
   data: [],
   item: {},
+  latest: [],
   isPending: false,
 };
 

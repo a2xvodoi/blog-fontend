@@ -15,13 +15,6 @@ const routes = [
           import(/* webpackChunkName: "home" */ "@/pages/client/HomePage.vue"),
       },
       {
-        path: "",
-        name: "blogs",
-        meta: { title: "blogs" },
-        component: () =>
-          import(/* webpackChunkName: "blog" */ "@/pages/client/HomePage.vue"),
-      },
-      {
         path: "tags/:slug",
         name: "blog-by-tag",
         meta: { title: "blog by tag" },
@@ -33,7 +26,9 @@ const routes = [
         name: "blog-detail",
         meta: { title: "blog detail" },
         component: () =>
-          import(/* webpackChunkName: "blog" */ "@/pages/client/BlogDetailPage.vue"),
+          import(
+            /* webpackChunkName: "blog" */ "@/pages/client/BlogDetailPage.vue"
+          ),
       },
     ],
   },
@@ -41,7 +36,7 @@ const routes = [
     path: "/admin",
     component: () =>
       import(
-        /* webpackChunkName: "client-layout" */ "@/layouts/admin/MainLayout.vue"
+        /* webpackChunkName: "admin-layout" */ "@/layouts/admin/MainLayout.vue"
       ),
     redirect: "admin/dashboard",
     children: [
@@ -129,7 +124,22 @@ const routes = [
     ],
   },
   {
+    path: "/login",
+    name: "login",
+    meta: { title: "Login - Register" },
+    component: () =>
+      import(/* webpackChunkName: "login" */ "@/pages/LoginPage.vue"),
+  },
+  {
+    path: "/switch",
+    name: "switch",
+    meta: { title: "Switch page" },
+    component: () =>
+      import(/* webpackChunkName: "switch" */ "@/pages/SwitchPage.vue"),
+  },
+  {
     path: "/:pathMatch(.*)*",
+    name: "not-found-page",
     meta: { title: "Not found page" },
     component: () =>
       import(/* webpackChunkName: "not-found" */ "@/pages/NotFoundPage.vue"),

@@ -7,7 +7,7 @@ const utilsCommon = {
   /**
    * define key storage data
    */
-  storageKeyData: "vue-training",
+  storageKeyData: "blog",
 
   /**
    * Clear storage data

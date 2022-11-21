@@ -29,6 +29,8 @@
   </section>
 </template>
 <script>
+import { watchEffect } from "vue";
+
 export default {
   props: {
     category: {
@@ -43,6 +45,11 @@ export default {
       type: String,
       default: "",
     },
+  },
+  setup(props) {
+    watchEffect(() => {
+      document.title = props.title;
+    });
   },
 };
 </script>

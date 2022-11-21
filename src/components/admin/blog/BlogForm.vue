@@ -53,12 +53,28 @@
       ></textarea>
     </div>
     <div class="form-group">
-      <label class="text-capitalize" for="content">{{ $t("content") }}</label>
-      <tiny-editor
-        id="content"
-        class="form-control"
-        v-model="contentTiny"
+      <label class="text-capitalize" for="image">{{ $t("image") }}</label>
+      <div class="input-group">
+        <div class="custom-file">
+          <input
+            type="file"
+            class="custom-file-input"
+            id="image"
+            @change="filesChange($event.target.files)"
+          />
+          <label class="custom-file-label" for="image">Choose file</label>
+        </div>
+      </div>
+      <img
+        class="w-25 img-thumbnail mt-2"
+        alt="image"
+        v-if="image"
+        :src="isBase64(image) ? image : $imageBase(image)"
       />
+    </div>
+    <div class="form-group">
+      <label class="text-capitalize" for="content">{{ $t("content") }}</label>
+      <tiny-editor id="content" class="form-control" v-model="contentTiny" />
     </div>
   </div>
   <!-- /.card-body -->
@@ -89,6 +105,7 @@ import { computed, ref, watch } from "vue";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
 import VueMultiselect from "vue-multiselect";
+import { convertBase64, isBase64 } from "@/utils/helper";
 
 export default {
   components: { VueMultiselect },
@@ -97,6 +114,7 @@ export default {
     published: Boolean,
     summary: String,
     content: String,
+    image: String,
     selected: Array,
     error: String,
   },
@@ -105,6 +123,7 @@ export default {
     "update:published",
     "update:summary",
     "update:content",
+    "update:image",
     "update:selected",
   ],
   setup(props, { emit }) {
@@ -131,7 +150,25 @@ export default {
       return route.name === "blog-create" ? "create" : "update";
     };
 
-    return { contentTiny, tagSelected, tags, getButtonSubmit };
+    const filesChange = async (files) => {
+      try {
+        if (files[0]) {
+          const base64 = await convertBase64(files[0]);
+          emit("update:image", base64);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    return {
+      contentTiny,
+      tagSelected,
+      tags,
+      getButtonSubmit,
+      filesChange,
+      isBase64,
+    };
   },
 };
 </script>

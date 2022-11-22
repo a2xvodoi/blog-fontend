@@ -51,8 +51,7 @@ export function formatDate(d) {
 
 export function authHeader() {
   let user = utilsCommon.getStorageDataByKey("user");
-
-  if (user && user.accessToken) {
+  if (user && user.token) {
     return { "x-access-token": user.token };
   } else {
     return {};

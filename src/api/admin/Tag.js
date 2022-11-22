@@ -3,11 +3,7 @@ import BaseApi from "../Base";
 
 export default {
   show(id, params) {
-    return BaseApi.get(
-      `/admin/tags/${id}`,
-      { params },
-      { headers: authHeader() }
-    );
+    return BaseApi.get(`/admin/tags/${id}`, { params, headers: authHeader() });
   },
   store(params) {
     return BaseApi.post("/admin/tags", params, { headers: authHeader() });

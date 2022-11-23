@@ -46,7 +46,7 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
 .bg-auth {
   background: url("@/assets/images/bg/login.webp") no-repeat;
   background-size: cover;

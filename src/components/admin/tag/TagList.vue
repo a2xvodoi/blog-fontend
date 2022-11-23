@@ -34,12 +34,30 @@
 <script>
 export default {
   props: {
-    id: Number,
-    title: String,
-    image: String,
-    describe: String,
-    follow: Number,
-    parentTag: String,
+    id: {
+      type: Number,
+      required: true,
+    },
+    title: {
+      type: String,
+      required: true,
+    },
+    image: {
+      type: String,
+      required: true,
+    },
+    describe: {
+      type: String,
+      required: true,
+    },
+    follow: {
+      type: Number,
+      required: true,
+    },
+    parentTag: {
+      type: String,
+      required: true,
+    },
   },
 };
 </script>

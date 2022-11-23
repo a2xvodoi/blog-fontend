@@ -7,9 +7,13 @@
         <div class="blog-item-meta py-1 px-2">
           <span class="text-muted text-capitalize mr-3"
             ><i class="ti-pencil-alt mr-2"></i>
-            <router-link v-for="tag in tags" :key="tag.id" :to="{ name: 'blog-by-tag', params: { slug: tag.slug } }">{{ tag.title }} &nbsp;</router-link>
-            </span
-          >
+            <router-link
+              v-for="tag in tags"
+              :key="tag.id"
+              :to="{ name: 'blog-by-tag', params: { slug: tag.slug } }"
+              >{{ tag.title }} &nbsp;</router-link
+            >
+          </span>
         </div>
 
         <h3 class="mt-3 mb-3 title">
@@ -33,15 +37,30 @@
 <script>
 export default {
   props: {
-    tags: Object,
-    title: String,
-    summary: String,
-    slug: String,
-    image: String,
+    tags: {
+      type: Object,
+      required: true,
+    },
+    title: {
+      type: String,
+      required: true,
+    },
+    summary: {
+      type: String,
+      required: true,
+    },
+    slug: {
+      type: String,
+      required: true,
+    },
+    image: {
+      type: String,
+      required: true,
+    },
   },
 };
 </script>
-<style>
+<style scoped>
 .title,
 .summary {
   word-break: break-all;

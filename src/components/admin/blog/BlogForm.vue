@@ -110,13 +110,34 @@ import { convertBase64, isBase64 } from "@/utils/helper";
 export default {
   components: { VueMultiselect },
   props: {
-    title: String,
-    published: Boolean,
-    summary: String,
-    content: String,
-    image: String,
-    selected: Array,
-    error: String,
+    title: {
+      type: String,
+      required: true,
+    },
+    published: {
+      type: Boolean,
+      required: true,
+    },
+    summary: {
+      type: String,
+      required: true,
+    },
+    content: {
+      type: String,
+      required: true,
+    },
+    image: {
+      type: String,
+      required: true,
+    },
+    selected: {
+      type: Array,
+      required: true,
+    },
+    error: {
+      type: String,
+      required: true,
+    },
   },
   emits: [
     "update:title",

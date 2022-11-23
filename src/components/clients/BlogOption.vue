@@ -57,10 +57,19 @@
 <script>
 export default {
   props: {
-    tags: Object,
-    title: String,
-    summary: String,
-  }
+    tags: {
+      type: Object,
+      required: true,
+    },
+    title: {
+      type: String,
+      required: true,
+    },
+    summary: {
+      type: String,
+      required: true,
+    },
+  },
 };
 </script>
 <style>

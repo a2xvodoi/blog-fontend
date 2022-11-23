@@ -46,9 +46,18 @@ import CardItemBlog from "@/components/clients/CardItemBlog.vue";
 export default {
   components: { TitleContent, SideBar, CardItemBlog },
   props: {
-    category: String,
-    title: String,
-    bgSrc: String,
+    category: {
+      type: String,
+      required: true,
+    },
+    title: {
+      type: String,
+      required: true,
+    },
+    bgSrc: {
+      type: String,
+      required: true,
+    },
   },
   setup() {
     const store = useStore();

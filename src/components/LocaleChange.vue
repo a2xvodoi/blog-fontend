@@ -11,7 +11,7 @@
     </select>
   </div>
 </template>
-<style>
+<style scoped>
   select, option {
     cursor: pointer;
   }

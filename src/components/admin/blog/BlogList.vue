@@ -42,13 +42,34 @@
 <script>
 export default {
   props: {
-    id: Number,
-    title: String,
-    image: String,
-    summary: String,
-    published: Number,
-    tags: String,
-    author: String,
+    id: {
+      type: Number,
+      required: true,
+    },
+    title: {
+      type: String,
+      required: true,
+    },
+    image: {
+      type: String,
+      required: true,
+    },
+    summary: {
+      type: String,
+      required: true,
+    },
+    published: {
+      type: Boolean,
+      required: true,
+    },
+    tags: {
+      type: String,
+      required: true,
+    },
+    author: {
+      type: String,
+      required: true,
+    },
   },
   setup() {
     const checkPublish = (publish) => {

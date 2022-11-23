@@ -21,7 +21,7 @@
 <script>
 export default {};
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .switch-container {
   height: 100vh;
   background: url("@/assets/images/bg/switch.jfif") no-repeat;

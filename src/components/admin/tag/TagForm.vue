@@ -88,11 +88,26 @@ import { useRoute } from "vue-router";
 import { convertBase64, isBase64 } from "@/utils/helper";
 
 defineProps({
-  title: String,
-  describe: String,
-  image: String,
-  parentId: Number,
-  error: String,
+  title: {
+    type: String,
+    required: true,
+  },
+  describe: {
+    type: String,
+    required: true,
+  },
+  image: {
+    type: String,
+    required: true,
+  },
+  parentId: {
+    type: Number,
+    required: true,
+  },
+  error: {
+    type: String,
+    required: true,
+  },
 });
 
 const emits = defineEmits([

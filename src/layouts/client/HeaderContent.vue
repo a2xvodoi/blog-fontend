@@ -120,7 +120,7 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
 #navbar .nav-link.active {
   color: #f75757;
 }

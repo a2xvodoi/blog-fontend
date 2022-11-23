@@ -23,7 +23,7 @@
           />
         </div>
         <div class="info">
-          <a href="#" class="d-block">Admin</a>
+          <span class="d-block text-light">{{ user.user_name }}</span>
         </div>
       </div>
 
@@ -62,3 +62,16 @@
     <!-- /.sidebar -->
   </aside>
 </template>
+
+<script>
+import utilsCommon from '@/utils/common';
+import { computed } from 'vue';
+
+export default {
+  setup() {
+    const user = computed(() => utilsCommon.getStorageDataByKey("user"));
+
+    return { user }
+  }
+};
+</script>

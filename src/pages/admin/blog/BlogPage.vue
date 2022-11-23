@@ -34,7 +34,7 @@
             :summary="blog.summary"
             :published="blog.published"
             :tags="blog.tags.map(item => item.title).join(', ')"
-            :author="blog.author"
+            :author-id="blog.author_id"
             @show-modal="showModal"
           />
         </tbody>

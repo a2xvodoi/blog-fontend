@@ -15,7 +15,7 @@
       </div>
     </td>
     <td>{{ tags }}</td>
-    <td>{{ author }}</td>
+    <td>{{ authorId }}</td>
     <td class="project-actions text-right text-capitalize">
       <a class="btn btn-primary btn-sm my-1" href="#">
         <i class="fas fa-folder"> </i>
@@ -59,15 +59,15 @@ export default {
       required: true,
     },
     published: {
-      type: Boolean,
+      type: Number,
       required: true,
     },
     tags: {
       type: String,
       required: true,
     },
-    author: {
-      type: String,
+    authorId: {
+      type: Number,
       required: true,
     },
   },

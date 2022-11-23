@@ -20,6 +20,8 @@ const publicPages = [
   "blog-by-tag",
   "blog-detail",
   "not-found-page",
+  "about",
+  "contact",
 ];
 
 const adminPages = [

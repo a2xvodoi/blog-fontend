@@ -12,6 +12,9 @@ const mutations = {
   SET_ITEM(state, payload) {
     state.item = payload;
   },
+  UPDATE_ITEM(state, payload) {
+    state.item = { ...state.item, ...payload };
+  },
   SET_LATEST(state, payload) {
     state.latest = payload;
   },

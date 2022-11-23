@@ -6,9 +6,10 @@
   </div>
 </template>
 <script>
-import HeaderContent from "./HeaderContent.vue";
-import MainContent from "./MainContent.vue";
-import FooterContent from "./FooterContent.vue";
+import HeaderContent from "@/components/clients/layouts/HeaderContent.vue";
+import MainContent from "@/components/clients/layouts/MainContent.vue";
+import FooterContent from "@/components/clients/layouts/FooterContent.vue";
+
 export default {
   components: { HeaderContent, MainContent, FooterContent },
 };

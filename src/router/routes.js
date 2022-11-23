@@ -30,6 +30,24 @@ const routes = [
             /* webpackChunkName: "blog" */ "@/pages/client/BlogDetailPage.vue"
           ),
       },
+      {
+        path: "about",
+        name: "about",
+        meta: { title: "about" },
+        component: () =>
+          import(
+            /* webpackChunkName: "blog" */ "@/pages/client/AboutPage.vue"
+          ),
+      },
+      {
+        path: "contact",
+        name: "contact",
+        meta: { title: "contact" },
+        component: () =>
+          import(
+            /* webpackChunkName: "blog" */ "@/pages/client/ContactPage.vue"
+          ),
+      },
     ],
   },
   {

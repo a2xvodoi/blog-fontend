@@ -2,44 +2,13 @@
   <!-- Header Start -->
 
   <header class="navigation">
-    <div class="header-top">
-      <div class="container">
-        <div class="row justify-content-between align-items-center">
-          <div class="col-lg-2 col-md-4">
-            <div
-              class="header-top-socials text-center text-lg-left text-md-left"
-            >
-              <a href="https://www.facebook.com/" target="_blank"
-                ><i class="ti-facebook"></i
-              ></a>
-              <a href="https://twitter.com/" target="_blank"
-                ><i class="ti-twitter"></i
-              ></a>
-              <a href="https://github.com/" target="_blank"
-                ><i class="ti-github"></i
-              ></a>
-            </div>
-          </div>
-          <div
-            class="col-lg-10 col-md-8 text-center text-lg-right text-md-right"
-          >
-            <div class="header-top-info">
-              <a href="#">Call Us : <span>+23-345-67890</span></a>
-              <a href="#"
-                ><i class="fa fa-envelope mr-2"></i
-                ><span>support@gmail.com</span></a
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <header-content-contact />
     <nav class="navbar navbar-expand-lg py-4" id="navbar">
       <div class="container">
         <router-link class="navbar-brand" to="/">
-          Mega<span>kit.</span>
+          VA<span>log</span>
         </router-link>
-        <button
+        <!-- <button
           class="navbar-toggler collapsed"
           type="button"
           data-toggle="collapse"
@@ -49,7 +18,7 @@
           aria-label="Toggle navigation"
         >
           <span class="fa fa-bars"></span>
-        </button>
+        </button> -->
 
         <div class="collapse navbar-collapse text-center" id="navbarsExample09">
           <ul class="navbar-nav ml-auto">
@@ -65,10 +34,10 @@
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
+              <router-link class="nav-link" :to="{ name: 'about' }">About</router-link>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
+              <router-link class="nav-link" :to="{ name: 'contact' }">Contact</router-link>
             </li>
           </ul>
 
@@ -105,8 +74,10 @@
 import utilsCommon from "@/utils/common";
 import { computed } from "vue";
 import { useStore } from "vuex";
+import HeaderContentContact from "./HeaderContentContact.vue";
 
 export default {
+  components: { HeaderContentContact },
   setup() {
     const store = useStore();
     const isPending = computed(() => store.state.tag.isPending);

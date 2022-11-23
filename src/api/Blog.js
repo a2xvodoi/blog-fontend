@@ -14,4 +14,7 @@ export default {
   show(slug, params) {
     return BaseApi.get(`/blogs/${slug}`, { params, headers: authHeader() });
   },
+  author(slug, params) {
+    return BaseApi.get(`/blogs/${slug}/author`, { params, headers: authHeader() });
+  },
 };

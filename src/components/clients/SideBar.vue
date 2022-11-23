@@ -6,8 +6,8 @@
         <a href="#" class="btn btn-mian btn-small d-block mt-2">search</a>
       </div>
 
-      <blog-author/>
-      <latest-post/>
+      <blog-author v-if="$route.name === 'blog-detail'" />
+      <latest-post />
 
       <div class="sidebar-widget bg-white rounded tags p-4 mb-3">
         <h5 class="mb-4">{{ $t("tags") }}</h5>
@@ -24,8 +24,8 @@
 <script>
 import { computed } from "vue";
 import { useStore } from "vuex";
-import LatestPost from './LatestPost.vue';
-import BlogAuthor from './BlogAuthor.vue';
+import LatestPost from "./LatestPost.vue";
+import BlogAuthor from "./BlogAuthor.vue";
 
 export default {
   components: { LatestPost, BlogAuthor },

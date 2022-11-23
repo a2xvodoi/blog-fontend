@@ -68,6 +68,15 @@ const actions = {
         commit("SET_IS_PENDING", false);
       });
   },
+  getInfoAuthor({ commit }, { slug }) {
+    return Blog.author(slug)
+      .then((response) => {
+        commit("UPDATE_ITEM", { author: response.data });
+      })
+      .catch(() => {
+        throw new Error("Could not get info user!");
+      });
+  },
   store({ commit }, data) {
     commit("SET_IS_PENDING", true);
     return BlogAdmin.store(data)
